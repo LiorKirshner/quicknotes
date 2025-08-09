@@ -7,7 +7,7 @@ const NoteCard = ({ note, onDelete }) => {
   const formattedDate = dayjs(note.createdAt).format("MMM Do h:mm A");
 
   function deleteNote() {
-    if (confirm("Are you sure you want to delete this note?")) {
+    if (confirm("Are you sure that you want to delete this note?")) {
       onDelete(note.id);
     }
   }
