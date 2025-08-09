@@ -11,7 +11,7 @@ export default function NoteList({ notes, onDelete }) {
   }
 
   return (
-    <div>
+    <div className="notes-container">
       <h2>Your Notes</h2>
       <div className="notes-grid">
         {notes.map((note) => (

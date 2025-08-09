@@ -8,6 +8,11 @@ export default function NoteForm({ onAdd }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    // Auto-resize textarea
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
+    
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -29,6 +34,12 @@ export default function NoteForm({ onAdd }) {
 
     onAdd(newNote);
     setFormData({ title: "", text: "" });
+    
+    // Reset textarea heights after submit
+    const textareas = e.target.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+      textarea.style.height = 'auto';
+    });
   };
 
   return (
