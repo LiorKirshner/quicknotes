@@ -91,6 +91,7 @@
   transition: transform 0.2s, box-shadow 0.2s;
   min-width: 250px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .note-card:hover,
@@ -111,6 +112,31 @@
 .note-footer small {
   color: #6c757d;
   font-size: 0.875rem;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.deleteBTN {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.deleteBTN:hover {
+  background: #c82333;
 }
 
 /* Responsive Design */

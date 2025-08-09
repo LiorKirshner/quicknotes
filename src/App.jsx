@@ -12,13 +12,16 @@ function App() {
       { id: crypto.randomUUID(), ...newNote },
     ]);
   }
+  function deleteNote(noteId) {
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+  }
 
   return (
     <div className="app">
       <h1>QuickNotes</h1>
       <div className="columns">
         <NoteForm onAdd={addNote} />
-        <NoteList notes={notes} />
+        <NoteList notes={notes} onDelete={deleteNote} />
       </div>
     </div>
   );
