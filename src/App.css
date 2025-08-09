@@ -81,7 +81,8 @@
   padding-bottom: 0.5rem;
 }
 
-.note-card {
+.note-card,
+.note {
   background: white;
   padding: 1rem;
   border-radius: 8px;
@@ -92,19 +93,22 @@
   flex-shrink: 0;
 }
 
-.note-card:hover {
+.note-card:hover,
+.note:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.note-text {
+.note-text,
+.note-body {
   margin: 0 0 0.5rem 0;
   color: #333;
   line-height: 1.5;
   word-wrap: break-word;
 }
 
-.note-date {
+.note-date,
+.note-footer small {
   color: #6c757d;
   font-size: 0.875rem;
 }
