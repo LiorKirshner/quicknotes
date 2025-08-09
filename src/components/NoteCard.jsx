@@ -16,6 +16,7 @@ const NoteCard = ({ note, onDelete }) => {
       <button className="deleteBTN" onClick={deleteNote}>
         X
       </button>
+      {note.title && <h3 className="note-title">{note.title}</h3>}
       <p className="note-body">{note.text}</p>
       <div className="note-footer">
         <small>Created: {formattedDate}</small>

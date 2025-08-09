@@ -1,20 +1,34 @@
 import { useState } from "react";
 
 export default function NoteForm({ onAdd }) {
-  const [noteText, setNoteText] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    text: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const text = noteText.trim();
+    const title = formData.title.trim();
+    const text = formData.text.trim();
+
     if (!text) return;
 
     const newNote = {
+      title: title || "",
       text,
       createdAt: Date.now(),
     };
 
     onAdd(newNote);
-    setNoteText("");
+    setFormData({ title: "", text: "" });
   };
 
   return (
@@ -22,10 +36,18 @@ export default function NoteForm({ onAdd }) {
       <h2>Add New Note</h2>
       <form onSubmit={handleSubmit}>
         <textarea
+          name="title"
+          placeholder="Title"
+          rows={1}
+          value={formData.title}
+          onChange={handleInputChange}
+        />
+        <textarea
+          name="text"
           placeholder="Write your note here..."
           rows={4}
-          value={noteText}
-          onChange={(e) => setNoteText(e.target.value)}
+          value={formData.text}
+          onChange={handleInputChange}
           required
         />
         <button type="submit">Add Note</button>

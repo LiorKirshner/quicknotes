@@ -47,6 +47,13 @@
   min-height: 100px;
 }
 
+.note-form textarea:first-of-type {
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+  resize: none;
+  overflow: hidden;
+}
+
 .note-form textarea:focus {
   outline: none;
   border-color: #007bff;
@@ -105,6 +112,14 @@
   margin: 0 0 0.5rem 0;
   color: #333;
   line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.note-title {
+  margin: 0 0 0.5rem 0;
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 600;
   word-wrap: break-word;
 }
 
