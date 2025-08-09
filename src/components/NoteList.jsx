@@ -1,6 +1,6 @@
 import NoteCard from "./NoteCard";
 
-export default function NoteList({ notes, onDelete }) {
+export default function NoteList({ notes, onDelete, onNoteClick }) {
   if (notes.length === 0) {
     return (
       <div>
@@ -15,7 +15,12 @@ export default function NoteList({ notes, onDelete }) {
       <h2>Your Notes</h2>
       <div className="notes-grid">
         {notes.map((note) => (
-          <NoteCard key={note.id} note={note} onDelete={onDelete} />
+          <NoteCard
+            key={note.id}
+            note={note}
+            onDelete={onDelete}
+            onNoteClick={onNoteClick}
+          />
         ))}
       </div>
     </div>
