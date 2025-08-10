@@ -1,6 +1,6 @@
 import NoteTile from "./NoteTile";
 import { UI_TEXT } from "../constants";
-
+//
 export default function NotesGrid({
   notes,
   selectedCategory,
