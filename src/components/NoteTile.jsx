@@ -5,8 +5,8 @@ import React from "react";
 
 const NoteTile = ({ note, onDelete, onNoteClick }) => {
   const formattedDate = dayjs(note.createdAt).format("MMM Do h:mm A");
-  const formattedEditDate = note.editedAt 
-    ? dayjs(note.editedAt).format("MMM Do h:mm A") 
+  const formattedEditDate = note.editedAt
+    ? dayjs(note.editedAt).format("MMM Do h:mm A")
     : null;
 
   function deleteNote() {

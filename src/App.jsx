@@ -27,7 +27,7 @@ function App() {
       ...updatedNote,
       editedAt: Date.now(), // Add edit timestamp
     };
-    
+
     setNotes((prev) =>
       prev.map((note) => (note.id === updatedNote.id ? noteWithEditTime : note))
     );
