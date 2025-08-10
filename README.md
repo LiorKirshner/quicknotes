@@ -2,7 +2,7 @@
 
 A complete note-taking application with categories, filtering, and persistent storage. Built as a comprehensive React learning project with modern UI components.
 
-![QuickNotes Screenshot](assets/main_page.png)
+![QuickNotes Screenshot](src/assets/main_page.png)
 
 ## What it does ✨
 
