@@ -2,9 +2,9 @@ import { useState } from "react";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "./App.css";
-import NoteForm from "./components/NoteForm";
-import NoteList from "./components/NoteList.jsx";
-import NoteModal from "./components/Modal";
+import NoteCreationForm from "./components/NoteCreationForm";
+import NotesGrid from "./components/NotesGrid";
+import NoteViewModal from "./components/NoteViewModal";
 
 function App() {
   // Notes data
@@ -22,6 +22,14 @@ function App() {
     setNotes((prev) => prev.filter((note) => note.id !== noteId));
   };
 
+  const saveNote = (updatedNote) => {
+    setNotes((prev) =>
+      prev.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+    );
+    // Update selected note to reflect changes in modal
+    setSelectedNote(updatedNote);
+  };
+
   // Modal operations
   const toggleModal = (note = null) => {
     setSelectedNote(note);
@@ -32,17 +40,18 @@ function App() {
       <div className="app">
         <h1>QuickNotes</h1>
         <div className="columns">
-          <NoteForm onAdd={addNote} />
-          <NoteList
+          <NoteCreationForm onAdd={addNote} />
+          <NotesGrid
             notes={notes}
             onDelete={deleteNote}
             onNoteClick={toggleModal}
           />
         </div>
-        <NoteModal
+        <NoteViewModal
           opened={!!selectedNote}
           onClose={() => toggleModal()}
           note={selectedNote}
+          onSave={saveNote}
         />
       </div>
     </MantineProvider>
