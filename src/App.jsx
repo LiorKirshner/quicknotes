@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "./App.css";
 import { APP_CONFIG } from "./constants";
+import { saveNotesToStorage, loadNotesFromStorage } from "./utils/localStorage";
 import NoteCreationForm from "./components/NoteCreationForm";
 import NotesGrid from "./components/NotesGrid";
 import NoteViewModal from "./components/NoteViewModal";
 
 function App() {
-  // Notes data
+  // Notes data - initialize as empty array, will be loaded from storage
   const [notes, setNotes] = useState([]);
 
   // Modal state
@@ -16,6 +17,21 @@ function App() {
 
   // Category filter state
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  // Load notes from local storage when app starts
+  useEffect(() => {
+    const savedNotes = loadNotesFromStorage();
+    if (savedNotes.length > 0) {
+      setNotes(savedNotes);
+    }
+  }, []); // Empty dependency array means this runs once when component mounts
+
+  // Save notes to local storage whenever notes change
+  useEffect(() => {
+    if (notes.length > 0) {
+      saveNotesToStorage(notes);
+    }
+  }, [notes]); // This runs whenever notes state changes
 
   // Available categories
   const categories = [

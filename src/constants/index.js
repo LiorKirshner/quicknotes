@@ -33,6 +33,7 @@ export const APP_CONFIG = {
   NOTE_WIDTH: "180px",
   MAX_TEXTAREA_HEIGHT: "200px",
   MIN_TEXTAREA_HEIGHT: "2rem",
+  LOCAL_STORAGE_KEY: "quicknotes-data",
 };
 
 // Category Colors
