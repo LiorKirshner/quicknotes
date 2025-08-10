@@ -91,6 +91,22 @@
   cursor: not-allowed;
 }
 
+/* Form Buttons Container */
+.form-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.form-buttons .cancel-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.form-buttons .cancel-btn:hover {
+  background: #545b62;
+}
+
 /* Notes Container */
 .notes-container {
   overflow: hidden;
@@ -180,9 +196,15 @@
 
 .note-footer {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 0.1rem;
+  gap: 0.1rem;
+}
+
+.edit-time {
+  color: #28a745 !important;
+  font-weight: 500;
 }
 
 .deleteBTN {
@@ -255,6 +277,12 @@
 .modal-footer small {
   color: #6c757d;
   font-size: 0.875rem;
+  margin-right: 0.5rem;
+}
+
+.modal-footer .edit-time {
+  color: #28a745 !important;
+  font-weight: 500;
 }
 
 /* Edit Form Styles */

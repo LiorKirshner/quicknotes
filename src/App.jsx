@@ -23,11 +23,16 @@ function App() {
   };
 
   const saveNote = (updatedNote) => {
+    const noteWithEditTime = {
+      ...updatedNote,
+      editedAt: Date.now(), // Add edit timestamp
+    };
+    
     setNotes((prev) =>
-      prev.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+      prev.map((note) => (note.id === updatedNote.id ? noteWithEditTime : note))
     );
     // Update selected note to reflect changes in modal
-    setSelectedNote(updatedNote);
+    setSelectedNote(noteWithEditTime);
   };
 
   // Modal operations

@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function NoteCreationForm({ onAdd }) {
+export default function NoteCreationForm({
+  onAdd,
+  onUpdate,
+  initialNote = null,
+  onCancel = null,
+}) {
+  // Auto-detect edit mode if initialNote is provided
+  const isEditMode = !!initialNote;
+
   const [formData, setFormData] = useState({
-    title: "",
-    text: "",
+    title: initialNote?.title || "",
+    text: initialNote?.text || "",
   });
+
+  // Update form data when initialNote changes
+  useEffect(() => {
+    if (initialNote) {
+      setFormData({
+        title: initialNote.title || "",
+        text: initialNote.text || "",
+      });
+    }
+  }, [initialNote]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,25 +44,35 @@ export default function NoteCreationForm({ onAdd }) {
 
     if (!text) return;
 
-    const newNote = {
-      title: title || "",
-      text,
-      createdAt: Date.now(),
-    };
+    if (isEditMode && onUpdate) {
+      // Update existing note
+      const updatedNote = {
+        ...initialNote,
+        title: title || "",
+        text,
+      };
+      onUpdate(updatedNote);
+    } else if (onAdd) {
+      // Create new note
+      const newNote = {
+        title: title || "",
+        text,
+        createdAt: Date.now(),
+      };
+      onAdd(newNote);
+      setFormData({ title: "", text: "" });
 
-    onAdd(newNote);
-    setFormData({ title: "", text: "" });
-
-    // Reset textarea heights after submit
-    const textareas = e.target.querySelectorAll("textarea");
-    textareas.forEach((textarea) => {
-      textarea.style.height = "auto";
-    });
+      // Reset textarea heights after submit
+      const textareas = e.target.querySelectorAll("textarea");
+      textareas.forEach((textarea) => {
+        textarea.style.height = "auto";
+      });
+    }
   };
 
   return (
     <div className="note-form">
-      <h2>Add New Note</h2>
+      <h2>{isEditMode ? "Edit Note" : "Add New Note"}</h2>
       <form onSubmit={handleSubmit}>
         <textarea
           name="title"
@@ -61,7 +89,16 @@ export default function NoteCreationForm({ onAdd }) {
           onChange={handleInputChange}
           required
         />
-        <button type="submit">Add Note</button>
+        <div className="form-buttons">
+          <button type="submit">
+            {isEditMode ? "Save Changes" : "Add Note"}
+          </button>
+          {isEditMode && onCancel && (
+            <button type="button" onClick={onCancel} className="cancel-btn">
+              Cancel
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

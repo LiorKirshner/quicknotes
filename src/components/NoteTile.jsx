@@ -5,6 +5,9 @@ import React from "react";
 
 const NoteTile = ({ note, onDelete, onNoteClick }) => {
   const formattedDate = dayjs(note.createdAt).format("MMM Do h:mm A");
+  const formattedEditDate = note.editedAt 
+    ? dayjs(note.editedAt).format("MMM Do h:mm A") 
+    : null;
 
   function deleteNote() {
     if (confirm("Are you sure that you want to delete this note?")) {
@@ -31,6 +34,9 @@ const NoteTile = ({ note, onDelete, onNoteClick }) => {
       <p className="note-body">{note.text}</p>
       <div className="note-footer">
         <small>Created: {formattedDate}</small>
+        {formattedEditDate && (
+          <small className="edit-time">Edited: {formattedEditDate}</small>
+        )}
       </div>
     </article>
   );
