@@ -34,3 +34,32 @@ export const APP_CONFIG = {
   MAX_TEXTAREA_HEIGHT: "200px",
   MIN_TEXTAREA_HEIGHT: "2rem",
 };
+
+// Category Colors
+export const CATEGORY_COLORS = {
+  work: {
+    background: "#e3f2fd",
+    border: "#2196f3",
+    text: "#1565c0",
+  },
+  personal: {
+    background: "#e8f5e8",
+    border: "#4caf50",
+    text: "#2e7d2e",
+  },
+  ideas: {
+    background: "#f3e5f5",
+    border: "#9c27b0",
+    text: "#7b1fa2",
+  },
+  todo: {
+    background: "#fff3e0",
+    border: "#ff9800",
+    text: "#f57c00",
+  },
+  default: {
+    background: "#ffffff",
+    border: "#e9ecef",
+    text: "#333333",
+  },
+};
