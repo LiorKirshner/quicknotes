@@ -14,8 +14,13 @@ export default function NotesGrid({ notes, onDelete, onNoteClick }) {
     <div className="notes-container">
       <h2>Your Notes</h2>
       <div className="notes-grid">
-                {notes.map((note) => (
-          <NoteTile key={note.id} note={note} onDelete={onDelete} onNoteClick={onNoteClick} />
+        {notes.map((note) => (
+          <NoteTile
+            key={note.id}
+            note={note}
+            onDelete={onDelete}
+            onNoteClick={onNoteClick}
+          />
         ))}
       </div>
     </div>
