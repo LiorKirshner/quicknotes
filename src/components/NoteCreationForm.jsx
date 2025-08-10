@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function NoteForm({ onAdd }) {
+export default function NoteCreationForm({ onAdd }) {
   const [formData, setFormData] = useState({
     title: "",
     text: "",

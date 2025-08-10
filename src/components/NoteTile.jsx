@@ -3,7 +3,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 dayjs.extend(advancedFormat);
 import React from "react";
 
-const NoteCard = ({ note, onDelete, onNoteClick }) => {
+const NoteTile = ({ note, onDelete, onNoteClick }) => {
   const formattedDate = dayjs(note.createdAt).format("MMM Do h:mm A");
 
   function deleteNote() {
@@ -36,4 +36,4 @@ const NoteCard = ({ note, onDelete, onNoteClick }) => {
   );
 };
 
-export default NoteCard;
+export default NoteTile;
