@@ -7,12 +7,20 @@ export default function NoteCreationForm({
   initialNote = null,
   onCancel = null,
 }) {
+  const categories = [
+    { value: "", label: "-- Select Category --" },
+    { value: "work", label: "Work" },
+    { value: "personal", label: "Personal" },
+    { value: "ideas", label: "Ideas" },
+    { value: "todo", label: "To Do" },
+  ];
   // Auto-detect edit mode if initialNote is provided
   const isEditMode = !!initialNote;
 
   const [formData, setFormData] = useState({
     title: initialNote?.title || "",
     text: initialNote?.text || "",
+    category: initialNote?.category || "",
   });
 
   // Update form data when initialNote changes
@@ -21,6 +29,7 @@ export default function NoteCreationForm({
       setFormData({
         title: initialNote.title || "",
         text: initialNote.text || "",
+        category: initialNote?.category || "",
       });
     }
   }, [initialNote]);
@@ -42,6 +51,7 @@ export default function NoteCreationForm({
     e.preventDefault();
     const title = formData.title.trim();
     const text = formData.text.trim();
+    const category = formData.category; // Fixed the category assignment
 
     if (!text) return;
 
@@ -51,6 +61,7 @@ export default function NoteCreationForm({
         ...initialNote,
         title: title || "",
         text,
+        category: category,
       };
       onUpdate(updatedNote);
     } else if (onAdd) {
@@ -59,9 +70,10 @@ export default function NoteCreationForm({
         title: title || "",
         text,
         createdAt: Date.now(),
+        category: category,
       };
       onAdd(newNote);
-      setFormData({ title: "", text: "" });
+      setFormData({ title: "", text: "", category: "" });
 
       // Reset textarea heights after submit
       const textareas = e.target.querySelectorAll("textarea");
@@ -82,6 +94,18 @@ export default function NoteCreationForm({
           value={formData.title}
           onChange={handleInputChange}
         />
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleInputChange}
+          className="category-select"
+        >
+          {categories.map((cat) => (
+            <option key={cat.value} value={cat.value}>
+              {cat.label}
+            </option>
+          ))}
+        </select>
         <textarea
           name="text"
           placeholder={UI_TEXT.NOTE_PLACEHOLDER}

@@ -14,6 +14,23 @@ function App() {
   // Modal state
   const [selectedNote, setSelectedNote] = useState(null);
 
+  // Category filter state
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  // Available categories
+  const categories = [
+    { value: "", label: "All Notes" },
+    { value: "work", label: "Work" },
+    { value: "personal", label: "Personal" },
+    { value: "ideas", label: "Ideas" },
+    { value: "todo", label: "To Do" },
+  ];
+
+  // Filter notes by selected category
+  const filteredNotes = selectedCategory
+    ? notes.filter((note) => note.category === selectedCategory)
+    : notes;
+
   // Note operations
   const addNote = (newNote) => {
     setNotes((prev) => [...prev, { id: crypto.randomUUID(), ...newNote }]);
@@ -44,11 +61,16 @@ function App() {
   return (
     <MantineProvider>
       <div className="app">
-        <h1>{APP_CONFIG.APP_NAME}</h1>
+        <header className="app-header">
+          <h1>{APP_CONFIG.APP_NAME}</h1>
+        </header>
         <div className="columns">
           <NoteCreationForm onAdd={addNote} />
           <NotesGrid
-            notes={notes}
+            notes={filteredNotes}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            categories={categories}
             onDelete={deleteNote}
             onNoteClick={toggleModal}
           />

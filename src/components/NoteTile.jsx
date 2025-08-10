@@ -27,6 +27,9 @@ const NoteTile = ({ note, onDelete, onNoteClick }) => {
         X
       </button>
       {note.title && <h3 className="note-title">{note.title}</h3>}
+      {note.category && (
+        <small className="note-category">{note.category}</small>
+      )}
       <p className="note-body">{note.text}</p>
       <div className="note-footer">
         <small>

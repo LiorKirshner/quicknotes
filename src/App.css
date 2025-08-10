@@ -7,15 +7,67 @@
 }
 
 /* Header */
-.app header {
+.app-header {
   text-align: center;
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e9ecef;
 }
 
-.app h1 {
+.app-header h1 {
   color: #333;
   margin: 0;
   font-size: 2rem;
+}
+
+/* Notes Header */
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.notes-header h2 {
+  margin: 0;
+  color: #495057;
+  font-size: 1.5rem;
+}
+
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.category-filter-select {
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: white;
+  color: #007bff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.category-filter-select:hover {
+  background: #007bff;
+  color: white;
+}
+
+.category-filter-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 /* Main Content */
@@ -66,6 +118,23 @@
 }
 
 .note-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Category Select Styles */
+.category-select {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: white;
+  cursor: pointer;
+}
+
+.category-select:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
@@ -185,6 +254,18 @@
   word-wrap: break-word;
 }
 
+.note-category {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  text-transform: capitalize;
+}
+
 .note-footer small {
   color: #6c757d;
   font-size: 0.65rem;
@@ -230,6 +311,20 @@
 
   .notes-grid {
     grid-template-columns: 1fr;
+  }
+
+  .notes-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .notes-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .category-filter-select {
+    min-width: 160px;
   }
 }
 
