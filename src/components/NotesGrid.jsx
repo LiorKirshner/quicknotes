@@ -1,18 +1,19 @@
 import NoteTile from "./NoteTile";
+import { UI_TEXT } from "../constants";
 
 export default function NotesGrid({ notes, onDelete, onNoteClick }) {
   if (notes.length === 0) {
     return (
       <div>
-        <h2>Your Notes</h2>
-        <p>No notes yet. Add your first note!</p>
+        <h2>{UI_TEXT.YOUR_NOTES}</h2>
+        <p>{UI_TEXT.NO_NOTES_MESSAGE}</p>
       </div>
     );
   }
 
   return (
     <div className="notes-container">
-      <h2>Your Notes</h2>
+      <h2>{UI_TEXT.YOUR_NOTES}</h2>
       <div className="notes-grid">
         {notes.map((note) => (
           <NoteTile

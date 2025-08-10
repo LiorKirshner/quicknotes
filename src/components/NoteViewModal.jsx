@@ -1,19 +1,15 @@
 import { Modal } from "@mantine/core";
 import { useState } from "react";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
+import { formatNoteDates } from "../utils/dateUtils";
+import { UI_TEXT } from "../constants";
 import NoteCreationForm from "./NoteCreationForm";
-dayjs.extend(advancedFormat);
 
 const NoteViewModal = ({ opened, onClose, note, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   if (!note) return null;
 
-  const formattedDate = dayjs(note.createdAt).format("MMM Do h:mm A");
-  const formattedEditDate = note.editedAt
-    ? dayjs(note.editedAt).format("MMM Do h:mm A")
-    : null;
+  const { createdDate, editedDate } = formatNoteDates(note);
 
   const startEditing = () => {
     setIsEditing(true);
@@ -32,7 +28,7 @@ const NoteViewModal = ({ opened, onClose, note, onSave }) => {
     <Modal
       opened={opened}
       onClose={onClose}
-      title={isEditing ? "Edit Note" : note.title || "Note"}
+      title={isEditing ? UI_TEXT.EDIT_NOTE : note.title || "Note"}
       size="md"
       centered
     >
@@ -50,19 +46,23 @@ const NoteViewModal = ({ opened, onClose, note, onSave }) => {
             <p
               className="modal-text clickable"
               onClick={startEditing}
-              title="Click to edit"
+              title={UI_TEXT.CLICK_TO_EDIT}
             >
               {note.text}
             </p>
             <button onClick={startEditing} className="edit-btn">
-              ✏️ Edit
+              {UI_TEXT.EDIT_BUTTON}
             </button>
           </div>
         )}
         <div className="modal-footer">
-          <small>Created: {formattedDate}</small>
-          {formattedEditDate && (
-            <small className="edit-time">• Edited: {formattedEditDate}</small>
+          <small>
+            {UI_TEXT.CREATED_LABEL} {createdDate}
+          </small>
+          {editedDate && (
+            <small className="edit-time">
+              • {UI_TEXT.EDITED_LABEL} {editedDate}
+            </small>
           )}
         </div>
       </div>

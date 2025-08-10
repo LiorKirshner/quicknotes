@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { UI_TEXT } from "../constants";
 
 export default function NoteCreationForm({
   onAdd,
@@ -72,18 +73,18 @@ export default function NoteCreationForm({
 
   return (
     <div className="note-form">
-      <h2>{isEditMode ? "Edit Note" : "Add New Note"}</h2>
+      <h2>{isEditMode ? UI_TEXT.EDIT_NOTE : UI_TEXT.ADD_NEW_NOTE}</h2>
       <form onSubmit={handleSubmit}>
         <textarea
           name="title"
-          placeholder="Title"
+          placeholder={UI_TEXT.TITLE_PLACEHOLDER}
           rows={1}
           value={formData.title}
           onChange={handleInputChange}
         />
         <textarea
           name="text"
-          placeholder="Write your note here..."
+          placeholder={UI_TEXT.NOTE_PLACEHOLDER}
           rows={4}
           value={formData.text}
           onChange={handleInputChange}
@@ -91,11 +92,11 @@ export default function NoteCreationForm({
         />
         <div className="form-buttons">
           <button type="submit">
-            {isEditMode ? "Save Changes" : "Add Note"}
+            {isEditMode ? UI_TEXT.SAVE_CHANGES : UI_TEXT.ADD_NOTE}
           </button>
           {isEditMode && onCancel && (
             <button type="button" onClick={onCancel} className="cancel-btn">
-              Cancel
+              {UI_TEXT.CANCEL}
             </button>
           )}
         </div>

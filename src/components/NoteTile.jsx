@@ -1,16 +1,12 @@
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
-dayjs.extend(advancedFormat);
 import React from "react";
+import { formatNoteDates } from "../utils/dateUtils";
+import { UI_TEXT } from "../constants";
 
 const NoteTile = ({ note, onDelete, onNoteClick }) => {
-  const formattedDate = dayjs(note.createdAt).format("MMM Do h:mm A");
-  const formattedEditDate = note.editedAt
-    ? dayjs(note.editedAt).format("MMM Do h:mm A")
-    : null;
+  const { createdDate, editedDate } = formatNoteDates(note);
 
   function deleteNote() {
-    if (confirm("Are you sure that you want to delete this note?")) {
+    if (confirm(UI_TEXT.DELETE_CONFIRMATION)) {
       onDelete(note.id);
     }
   }
@@ -33,9 +29,13 @@ const NoteTile = ({ note, onDelete, onNoteClick }) => {
       {note.title && <h3 className="note-title">{note.title}</h3>}
       <p className="note-body">{note.text}</p>
       <div className="note-footer">
-        <small>Created: {formattedDate}</small>
-        {formattedEditDate && (
-          <small className="edit-time">Edited: {formattedEditDate}</small>
+        <small>
+          {UI_TEXT.CREATED_LABEL} {createdDate}
+        </small>
+        {editedDate && (
+          <small className="edit-time">
+            {UI_TEXT.EDITED_LABEL} {editedDate}
+          </small>
         )}
       </div>
     </article>

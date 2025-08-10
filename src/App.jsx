@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "./App.css";
+import { APP_CONFIG } from "./constants";
 import NoteCreationForm from "./components/NoteCreationForm";
 import NotesGrid from "./components/NotesGrid";
 import NoteViewModal from "./components/NoteViewModal";
@@ -43,7 +44,7 @@ function App() {
   return (
     <MantineProvider>
       <div className="app">
-        <h1>QuickNotes</h1>
+        <h1>{APP_CONFIG.APP_NAME}</h1>
         <div className="columns">
           <NoteCreationForm onAdd={addNote} />
           <NotesGrid
